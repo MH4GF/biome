@@ -94,8 +94,8 @@ test-doc:
 test-lintrule name:
   just _touch crates/biome_js_analyze/tests/spec_tests.rs
   just _touch crates/biome_json_analyze/tests/spec_tests.rs
-  cargo test -p biome_js_analyze -- {{snakecase(name)}}
-  cargo test -p biome_json_analyze -- {{snakecase(name)}}
+  cargo test -p biome_js_analyze -- {{snakecase(name)}} --show-output
+  cargo test -p biome_json_analyze -- {{snakecase(name)}} --show-output
 
 # Tests a lint rule. The name of the rule needs to be camel case
 test-transformation name:
