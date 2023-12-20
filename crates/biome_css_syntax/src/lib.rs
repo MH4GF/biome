@@ -30,11 +30,14 @@ impl CssSyntaxKind {
     pub fn is_trivia(self) -> bool {
         matches!(
             self,
-            CssSyntaxKind::NEWLINE | CssSyntaxKind::WHITESPACE | CssSyntaxKind::COMMENT
+            CssSyntaxKind::NEWLINE
+                | CssSyntaxKind::WHITESPACE
+                | CssSyntaxKind::COMMENT
+                | CssSyntaxKind::MULTILINE_COMMENT
         )
     }
 
-    /// Returns `true` for any contextual (await) or non-contextual keyword
+    /// Returns `true` for any contextual or non-contextual keyword
     #[inline]
     pub const fn is_keyword(self) -> bool {
         true
@@ -43,7 +46,7 @@ impl CssSyntaxKind {
     /// Returns `true` for contextual keywords
     #[inline]
     pub const fn is_contextual_keyword(self) -> bool {
-        (self as u16) >= (ALICEBLUE_KW as u16) && (self as u16) <= (VAR_KW as u16)
+        (self as u16) >= (MEDIA_KW as u16) && (self as u16) <= (FONT_FACE_KW as u16)
     }
 
     /// Returns `true` for contextual attribute modifier keywords

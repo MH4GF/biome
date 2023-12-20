@@ -13,6 +13,8 @@ pub(crate) mod container_style_or_combinable_query;
 pub(crate) mod container_style_query;
 pub(crate) mod declaration_name;
 pub(crate) mod dimension;
+pub(crate) mod keyframe_name;
+pub(crate) mod keyframes_selector;
 pub(crate) mod media_and_combinable_condition;
 pub(crate) mod media_condition;
 pub(crate) mod media_in_parens;

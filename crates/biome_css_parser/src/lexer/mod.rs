@@ -4,7 +4,7 @@ mod tests;
 
 use crate::CssParserOptions;
 use biome_css_syntax::{CssSyntaxKind, CssSyntaxKind::*, TextLen, TextRange, TextSize, T};
-use biome_js_unicode_table::{is_id_continue, is_id_start, lookup_byte, Dispatch::*};
+use biome_js_unicode_table::{is_id_continue, is_id_start, lookup_byte, Dispatch, Dispatch::*};
 use biome_parser::diagnostic::ParseDiagnostic;
 use biome_parser::lexer::{LexContext, Lexer, LexerCheckpoint, TokenFlags};
 use std::char::REPLACEMENT_CHARACTER;
@@ -498,6 +498,7 @@ impl<'src> CssLexer<'src> {
             EQL => self.consume_byte(T![=]),
             EXL => self.consume_byte(T![!]),
             PRC => self.consume_byte(T![%]),
+            Dispatch::AMP => self.consume_byte(T![&]),
 
             UNI => {
                 // A BOM can only appear at the start of a file, so if we haven't advanced at all yet,
@@ -725,6 +726,7 @@ impl<'src> CssLexer<'src> {
         let mut buf = [0u8; 20];
         let count = self.consume_ident_sequence(&mut buf);
 
+        //TODO add prefixes ('keyframes' | '-webkit-keyframes' | '-moz-keyframes' | '-o-keyframes' | '-ms-keyframes')
         match buf[..count].to_ascii_lowercase().as_slice() {
             b"media" => MEDIA_KW,
             b"keyframes" => KEYFRAMES_KW,
@@ -773,6 +775,7 @@ impl<'src> CssLexer<'src> {
             b"container" => CONTAINER_KW,
             b"style" => STYLE_KW,
             b"font-face" => FONT_FACE_KW,
+            b"keyframe" => KEYFRAMES_KW,
             _ => IDENT,
         }
     }

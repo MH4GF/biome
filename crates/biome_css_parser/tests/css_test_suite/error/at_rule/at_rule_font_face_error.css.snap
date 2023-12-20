@@ -39,7 +39,7 @@ CssRoot {
                     sub_selectors: CssSubSelectorList [],
                 },
             ],
-            block: CssBlock {
+            block: CssDeclarationListBlock {
                 l_curly_token: L_CURLY@15..16 "{" [] [],
                 declaration_list: CssDeclarationList [],
                 r_curly_token: R_CURLY@16..17 "}" [] [],
@@ -112,7 +112,7 @@ CssRoot {
             1: CSS_IDENTIFIER@11..15
               0: IDENT@11..15 "foo" [] [Whitespace(" ")]
           2: CSS_SUB_SELECTOR_LIST@15..15
-      1: CSS_BLOCK@15..17
+      1: CSS_DECLARATION_LIST_BLOCK@15..17
         0: L_CURLY@15..16 "{" [] []
         1: CSS_DECLARATION_LIST@16..16
         2: R_CURLY@16..17 "}" [] []

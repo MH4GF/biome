@@ -774,7 +774,11 @@ impl ParserProgress {
         assert!(
             self.has_progressed(p),
             "The parser is no longer progressing. Stuck at '{}' {:?}:{:?}",
-            p.cur_text(),
+            p.text(
+                p.cur_range()
+                    .sub_start(TextSize::from(10))
+                    .add_end(TextSize::from(10))
+            ),
             p.cur(),
             p.cur_range(),
         );
